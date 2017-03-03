@@ -1,0 +1,25 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Sea Wars</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['/']">Main Hall</a></li>
+        <li><a [routerLink]="['/about']">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><img src="{{authService.profile?.picture}}" class="user-ico hidden-xs" alt="user logo" *ngIf="authService.authenticated()"></li>
+        <li><a [routerLink]="['/profile']" *ngIf="authService.authenticated()">{{authService.profile?.nickname}}</a></li>
+        <li><a href="#" (click)="authService.login()" *ngIf="!authService.authenticated()">Log In</a></li>
+        <li><a href="#" (click)="authService.logout()" *ngIf="authService.authenticated()">Log Out</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

@@ -1,0 +1,11 @@
+<div class="panel panel-black main-chat">
+    <div class="panel-heading">Game Chat</div>
+    <div class="panel-body chat-container">
+        <ul class="messages-block">
+            <li class="message" *ngFor="let item of messages;">
+                <span class="message-time">{{ item.time }}</span> <span class="messager-nick">{{ item.author }}: </span> <span class="message-text">{{ item.text }}</span>
+            </li>
+        </ul>
+        <input type="text" class="chat-input" placeholder="{{ authService.authenticated() ? 'Write your message ...' : 'Login to start chat...'}}" [disabled]="!authService.authenticated()" [(ngModel)]="message" name="message" (keyup.enter)="sendMessage()">
+    </div>
+</div>

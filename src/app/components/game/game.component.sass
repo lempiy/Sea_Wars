@@ -1,0 +1,146 @@
+@import ./../../../colors
+
+.loading-block
+    height: 80vh
+    width: 100%
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+    h2
+        font-size: 18px
+        font-family: 'McLaren', cursive
+        margin: 10px 0 20px
+    .loading-bar-item
+        font-size: 47px
+        font-family: 'McLaren', cursive
+    .loading-bar-block
+        width: 300px
+        position: relative
+        height: 14px
+        .loading-bar
+            transition: width 0.4s
+            position: absolute
+            top: 5px
+            left: 0px
+            width: 0%
+            height: 4px
+            background-color: #ef0031
+            border-radius: 4px
+.game-cont
+    font-family: 'McLaren', cursive
+    .dialog-container
+        display: flex
+        justify-content: space-between
+        align-items: center
+        @media(max-width: 1023px)
+            flex-wrap: wrap
+            justify-content: flex-end
+    .game-title
+        width: 45%
+        @media(max-width: 1023px)
+            width: 100%
+    .stats
+        width: 300px
+        margin: 10px auto
+        tbody
+            td
+                background-color: transparent
+    .captain
+        background-image: url("/assets/sheets/captain/captain.png")
+        margin: 15px 0
+        width: 324px
+        height: 243px
+        border-radius: 100%
+        box-shadow: inset 0px 0px 35px 10px #ffffff
+        position: relative
+        cursor: pointer
+        @media(max-width: 600px)
+            transform: scale(0.6) translateX(155px)
+        .hint
+            position: absolute
+            top: -5px
+            left: -268px
+            width: 335px
+            height: 130px
+            padding: 0 15px
+            border-radius: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            background-color: #333
+            color: $white
+            z-index: 2
+            &.lowfont
+                font-size: 11px
+            &.hint-play
+                animation: fadeIn 1s
+            &::after
+                position: absolute
+                bottom: 0
+                right: 0
+                content: ''
+                width: 0
+                height: 0
+                border-style: solid
+                border-width: 0 0 66px 125px
+                border-color: transparent transparent #333 transparent
+                z-index: -1
+                transform: rotate(10deg) skew(45deg)
+    .captain-play
+        animation: talk 2s steps(22) 2
+        animation-direction: alternate
+    .captain-play-short
+        animation: talk 2s steps(22) 1
+    .controls-game
+        min-height: 125px
+    .canvas-game
+        margin: 0 auto
+        width: 320px
+        height: 576px
+        margin-bottom: 15px
+        &.red
+            box-shadow: 0px 0px 28px 3px rgba(245,39,39,1)
+        &.green
+            box-shadow: 0px 0px 28px 3px rgba(45,156,17,1)
+    .border
+        min-height: 550px
+    .heading
+        //margin-bottom: 20px
+        span
+            font-size: 24px
+            @media (max-width: 768px)
+                font-size: 20px
+            color: #333333
+        .red
+            color: $red
+        .black
+            color: $black
+        .vs
+            letter-spacing: -1.25rem
+            @media (max-width: 768px)
+                letter-spacing: -1.25rem
+            mix-blend-mode: multiply
+            margin-right: 17px
+            .black
+                @media (max-width: 768px)
+                    font-size: 4rem
+                font-size: 7rem
+                color: rgba($black, 0.7)
+            .red
+                @media (max-width: 768px)
+                    font-size: 4rem
+                font-size: 7rem
+                color: rgba($red, 0.7)
+
+@keyframes talk
+    from
+        background-position: 0px
+    to
+        background-position: -7128px
+
+@keyframes fadeIn
+    from
+        opacity: 0
+    to
+        opacity: 1

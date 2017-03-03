@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://back-end:3000",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/socket.io/*": {
+    "target": "http://back-end:3000",
+    "secure": false
+  }
+}

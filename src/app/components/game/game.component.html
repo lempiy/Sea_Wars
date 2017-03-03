@@ -1,0 +1,92 @@
+<div class="container game-cont" [class.hidden]="!resourcesLoaded">
+<!--     <div class="text-center heading">
+        <span class="red">{{gameService.gameOn.user_host.nickname}}  </span><span class="vs"><span class="red">V</span><span class="black">S</span></span><span class="black">  {{gameService.gameOn.connected_user_nickname}}</span>
+    </div> -->
+        <div class="dialog-container">
+        <div class="game-title text-center">
+            <div [class.hidden]="gameplayService.gameState !== 'lose' && gameplayService.gameState !== 'win'">
+                <h4>Game is over</h4>
+                <table class="table stats">
+                    <tbody>
+                        <tr>
+                            <td>Your moves:</td>
+                            <td>{{stats.playerMoves}}</td>
+                        </tr>
+                        <tr>
+                            <td>Enemy moves:</td>
+                            <td>{{stats.enemyMoves}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total moves:</td>
+                            <td>{{stats.totalMoves}}</td>
+                        </tr>
+                        <tr>
+                            <td>Enemy streak:</td>
+                            <td>{{stats.enemyStreak}}</td>
+                        </tr>
+                        <tr>
+                            <td>Your streak:</td>
+                            <td>{{stats.playerStreak}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">
+                                <button type="button" class="btn btn-sm btn-success" (click)="saveResults()">Save details</button>
+                            </td>
+                            <td>
+                                <a [routerLink]="['/']" class="btn btn-sm btn-primary">To main-hall</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center heading" [class.hidden]="gameplayService.gameState == 'lose' || gameplayService.gameState == 'win'">
+                <span class="red">{{gameService.gameOn.user_host.nickname}}  </span><span class="vs"><span class="red">V</span><span class="black">S</span></span><span class="black">  {{gameService.gameOn.connected_user_nickname}}</span>
+            </div>
+        </div>
+        <div class='captain'
+            [rerunAnimation]="'captain-play'"
+            [animationShortClass]="'captain-play-short'"
+            (click)="captainClickHandler()">
+            <div class="hint text-center"
+            [rerunAnimation]="'hint-play'"
+            [class.lowfont]="captainReplic?.length > 90"
+            [class.hidden]="!captainReplic">
+                {{captainReplic}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="col-md-6 border">
+
+                <div class="canvas-game ally"
+                    [ngClass]='{"red": gameplayService.playersTurn
+                        && gameplayService.gameState === "battling",
+                        "green": !gameplayService.playersTurn
+                        && gameplayService.gameState === "battling"}'
+                    ></div>
+
+            </div>
+            <div class="col-md-6 border">
+
+                <div class="canvas-game enemy"
+                [ngClass]='{"red": !gameplayService.playersTurn
+                        && gameplayService.gameState === "battling",
+                        "green": gameplayService.playersTurn
+                        && gameplayService.gameState === "battling"}'
+                    ></div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <app-game-chat></app-game-chat>
+        </div>
+    </div>
+</div>
+<div class="loading-block" [class.hidden]="resourcesLoaded">
+    <p class="loading-bar-item">{{gameplayService.loadingState / 2 + soundService.loadingProgress / 2}} %</p>
+    <h2>{{loadingMessage}}</h2>
+    <div class="loading-bar-block">
+        <div class="loading-bar" [style.width]="gameplayService.loadingState / 2 + soundService.loadingProgress / 2 + '%'"></div>
+    </div>
+</div>

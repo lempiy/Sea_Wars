@@ -1,0 +1,85 @@
+<div class="gamelist-container">
+  <div class="row">
+        <div class="col-md-8 part left-part" [@listFlyIn]="animateList">
+            <div class="panel panel-black games-main">
+                <div class="panel-heading">Games hosted</div>
+                <div class="panel-body games-list">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor="let game of games; let index = index;" (click)="selectGame(game)" [ngClass]="{'selected': selectedGame && game._id === selectedGame._id}">
+                                <td class="number-players">{{index + 1}}</td>
+                                <td>{{game.user_host.nickname}}</td>
+                                <td class="hidden-xs">{{game.name}}</td>
+                                <td class="text-left">Players: {{game.players}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 part" [@detailsFlyIn]="animateList">
+            <div class="panel panel-danger games-main">
+                <div class="panel-heading text-right">Game details</div>
+                <div class="panel-body games-details">
+                    <div class="wrapper-300">
+                        <div class="info-block">
+                            <div class="row" *ngIf="!createGameState && selectedGame && !gameCreatedState">
+                                <div class="col-xs-12 text-center">
+                                    <div class="selected-header clearfix">
+                                        <p class="pull-left text-left light-gray"><span class="dark-gray">Game:</span> Sea Wars</p>
+                                        <img src="/assets/ship.png" class="pull-right" alt="ship">
+                                    </div>
+                                    <h5>{{selectedGame.name}}</h5>
+                                    <p class="light-gray"><span class="dark-gray">Created:</span> {{ formatTime(selectedGame.time_stamp) }}</p>
+                                    <p class="host-name light-gray"><span class="dark-gray">Host:</span> {{ selectedGame.user_host.nickname }}</p>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="createGameState">
+                                <div class="col-xs-12 text-center">
+                                    <div class="selected-header clearfix">
+                                        <p class="pull-left text-left light-gray"><span class="dark-gray">Game:</span> Sea Wars</p>
+                                        <img src="/assets/ship.png" class="pull-right" alt="ship">
+                                    </div>
+                                    <div class="form">
+                                        <div class="form-group">
+                                            <label for="gameName">Game name</label>
+                                            <input type="text" class="form-control" id="gameName" placeholder="Enter game name..." [(ngModel)]="creationGameName" name="creationGameName">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="gameCreatedState">
+                                <div class="col-xs-12 text-center">
+                                    <div class="selected-header clearfix">
+                                        <p class="pull-left text-left light-gray"><span class="dark-gray">Game:</span> Sea Wars</p>
+                                        <img src="/assets/ship.png" class="pull-right" alt="ship">
+                                    </div>
+                                    <h5>Your game have been created!</h5>
+                                    <p class="light-gray"><span class="dark-gray">{{gameService.myGames[0].name}}</span></p>
+                                    <p class="host-name light-gray">{{gameService.myGames[0]?.connected_user_nickname ? 'Player connected: ' +  gameService.myGames[0].connected_user_nickname : "Waiting for opponent..."}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div *ngIf="!gameCreatedState">
+                                <div class="col-xs-6">
+                                    <button type="button" [hidden]="createGameState" class="btn btn-danger btn-block" (click)="createState(true)" [disabled]="!authService.authenticated() || authService.doubleAuth">Create Game</button>
+                                    <button type="button" [hidden]="!createGameState" [disabled]="!creationGameName || gameService.pendingRequest" class="btn btn-danger btn-block button-no-margin" (click)="submitGameCreation()">HOST</button>
+                                </div>
+                                <div class="col-xs-6">
+                                    <button type="button" class="btn btn-inverse-black btn-block" [hidden]="createGameState" [disabled]="!selectedGame || gameService.pendingRequest || authService.doubleAuth || !authService.authenticated()" (click)="connectToGame()">Connect</button>
+                                    <button type="button" class="btn btn-inverse-black btn-block button-no-margin" [hidden]="!createGameState" [disabled]="gameService.pendingRequest" (click)="createState(false)">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 text-center" *ngIf="gameCreatedState">
+                                <button type="button" *ngIf="!startingNewGame" class="btn btn-inverse-black btn-block button-no-margin" [disabled]="gameService.pendingRequest" (click)="stopGame()">Stop game</button>
+                                <div *ngIf="startGameCounter" class="start-counter">{{startGameCounter}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-double-connection [show]="showDoubleConnactionError"></app-double-connection>

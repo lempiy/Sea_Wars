@@ -1,0 +1,44 @@
+<div class="container">
+    <h3 class='text-center title'>User profile</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{authService.profile.picture}}" class="thumbnail logo" alt="">
+        </div>
+        <div class="col-md-9">
+            <ul class="list-group">
+              <li class="list-group-item">Nickname: {{authService.profile.nickname}}</li>
+              <li class="list-group-item">Email: {{authService.profile.email}}</li>
+              <li class="list-group-item">Created: {{authService.profile.created_at}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="games" *ngIf="userGames?.length">
+        <h2 class="text-center">Games played</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Game name</th>
+                            <th>Opponent</th>
+                            <th>Started At</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let game of userGames; let index = index;"
+                        [class.success]="game.result == 'win'"
+                        [class.danger]="game.result == 'lose'">
+                            <th>{{ index + 1 }}</th>
+                            <td>{{ game.name }}</td>
+                            <td>{{ game.opponent }}</td>
+                            <td>{{ formatTime(game.timestamp) }}</td>
+                            <td>{{ game.result }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div [class.hidden]="!show" class="mask">
+    <div class="warn-block">
+        <div class="icon">
+            !
+        </div>
+        <div class="text">
+            <h1>Double connection error</h1>
+            <p>Authorized user already online.<br>
+            Please login as other user or check for other browser windows.
+            </p>
+            <button class="btn btn-block btn-danger" (click)="unauth()">Continue</button>
+        </div>
+    </div>
+    <div class="mask-dark"></div>
+</div>

@@ -1,0 +1,54 @@
+.mask
+    position: absolute
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+    z-index: 10
+    .mask-dark
+        position: absolute
+        top: 0
+        left: 0
+        width: 100vw
+        height: 100vh
+        opacity: 0.6
+        background-color: #000000
+        z-index: 9
+    .warn-block
+        z-index: 11
+        width: 600px
+        height: 250px
+        @media (max-width: 767px)
+            width: 300px
+            height: 350px
+        background-color: #ffffff
+        display: flex
+        justify-content: space-around
+        align-items: center
+        flex-wrap: nowrap
+        border-radius: 3px
+        font-family: 'Arial, Helvetica, sans-serif', cursive
+        h1
+            font-size: 26px
+            @media (max-width: 767px)
+                font-size: 19px
+                line-height: 1.4
+        button
+            margin-top: 18px
+        .icon
+            width: 75px
+            height: 75px
+            border-radius: 100%
+            background-color: #d9534f
+            border: 2px solid #333
+            font-size: 40px
+            color: white
+            line-height: 75px
+            text-align: center
+        .text
+            width: 375px
+            @media (max-width: 767px)
+                width: 175px

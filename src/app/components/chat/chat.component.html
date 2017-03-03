@@ -1,0 +1,15 @@
+<div class="chat-wrapper-overflow">
+    <div class="panel panel-black main-chat" [@chatFlyIn]="animateList">
+        <div class="panel-heading clearfix">Main Hall Chat
+            <span class="amount pull-right">Users in Main Hall: {{mainChatService.users_in_mainhall}}</span>
+        </div>
+        <div class="panel-body chat-container">
+            <ul class="messages-block">
+                <li class="message" *ngFor="let item of messages;">
+                    <span class="message-time">{{ item.is_system ? "" : item.time }}</span> <span class="messager-nick">{{ item.author }}</span> <span class="message-text" [class.system]="item.is_system">{{ item.text }}</span>
+                </li>
+            </ul>
+            <input type="text" class="chat-input" placeholder="{{ authService.authenticated() && !authService.doubleAuth ? 'Write your message ...' : 'Login to start chat...'}}" [disabled]="!authService.authenticated()" [(ngModel)]="message" name="message" (keyup.enter)="sendMessage()">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+version: '2'
+services:
+    front-end:
+        build: .
+        command: npm run start-dev-docker
+        environment:
+            NODE_ENV: development
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - "4200:4200"
+        links:
+            - back-end
+        depends_on:
+            - back-end
+        networks:
+            - back-end
+
+    back-end:
+        build: .
+        command: supervisor app.js
+        environment:
+            NODE_ENV: development
+            REDIS_HOST: docker
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - "3000:3000"
+        links:
+            - redis
+        depends_on:
+            - redis
+        networks:
+            - redis
+            - back-end
+
+    redis:
+        image: redis:latest
+        container_name: Redis-sea-wars
+        ports:
+            - "6379:6379"
+        networks:
+            - redis
+
+networks:
+    redis:
+        driver: bridge
+    back-end:
+        driver: bridge

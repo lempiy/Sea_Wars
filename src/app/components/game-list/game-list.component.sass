@@ -1,0 +1,102 @@
+@import ./../../../colors
+
+.wrapper-300
+    margin: 0 auto
+    max-width: 290px
+
+.gamelist-container
+    width: 100%
+    margin-bottom: 20px
+    font-family: 'McLaren', cursive
+    .part
+        height: 275px
+        .games-main
+            height: 100%
+            .games-list
+                position: relative
+                height: 230px
+                overflow-y: scroll
+                padding: 0
+                margin: 0
+                .games-block
+                    width: 100%
+                    height: calc(100% - 45px)
+                    margin: 0
+                    padding-left: 10px
+                    overflow-y: scroll
+                    .game
+                        padding: 3px 0
+                .game-details
+                    width: 100%
+                    height: calc(100% - 45px)
+                    margin: 0
+
+.games-details
+    [hidden]
+        display: none
+    .button-no-margin
+        margin: 0
+    .info-block
+        min-height: 150px
+        .selected-header
+            p
+                padding-top: 10px
+                font-size: 16px
+            img
+                height: 42px
+    h5
+        font-family: 'McLaren', cursive
+    input
+        margin-top: 10px
+        &:focus
+            border-color: #333
+            box-shadow: 0px 0px 7px 0px #333
+    .host-name
+        font-size: 14px
+    .dark-gray
+        color: #333
+    .light-gray
+        color: $red
+    .btn
+        font-family: 'McLaren', cursive
+        transition: background-color 0.2s, color 0.2s
+        &:active
+            outline: none
+        &:focus
+            outline: none
+    .btn-inverse-black
+        background-color: $white
+        border: 2px solid #333
+        box-sizing: border-box
+        &:hover
+            background-color: #333
+            color: $white
+    .start-counter
+        font-size: 28px
+
+table
+    tbody
+        .number-players
+            width: 52px
+        tr
+            cursor: pointer
+            td
+                overflow-x: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+        tr:not(.selected):hover
+            background-color: #e9e9e9
+        .selected
+            background-color: $red
+            color: $white
+
+.panel-black
+    border-color: #333
+    .panel-heading
+        color: #fff
+        background-color: #333
+        border-color: #333
+
+@media(max-width: 768px)
+    .left-part
+        margin-bottom: 15px
