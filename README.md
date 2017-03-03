@@ -16,6 +16,7 @@ Its a single-man project created by newbie passionate web-developer Anton.
 * WebSockets (Socket.io)
 * MongoDB (remote)
 * Redis
+
 ### Front-end
 * Angular 2
 * Typescript
@@ -46,6 +47,7 @@ Its a single-man project created by newbie passionate web-developer Anton.
 5. From apps root `$ npm install`
 6. Ask author for ``keys.json`` file, and paste it into apps root
 7. Start project with `$ node app` and `$ npm run start-dev`
+
 ### Docker environment
 1. Install Docker and docker-compose
 2. Ask author for ``keys.json`` file, and paste it into apps root
