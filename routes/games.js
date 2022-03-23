@@ -3,7 +3,7 @@ var router = express.Router();
 var mongojs = require("mongojs");
 var fs = require('fs');
 var keys = JSON.parse(fs.readFileSync('keys.json', 'utf8'));
-var db = mongojs(`mongodb://${keys.m_lab_login}:${keys.m_lab_password}@ds041939.mlab.com:41939/mean_todos`, ['games']);
+var db = mongojs(`mongodb+srv://${keys.db_login}:${keys.db_password}@cluster0.xewpt.mongodb.net/sea_wars?retryWrites=true&w=majority`, ['games']);
 var EventEmitter = require('events').EventEmitter;
 
 router.emitter = new EventEmitter();

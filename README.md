@@ -31,7 +31,7 @@ Its a single-man project created by newbie passionate web-developer Anton.
 ### Tools and theird-party services
 * @angular/cli
 * Auth0
-* MLab
+* Mongo Atlas
 * RedisToGo
 * Texture Packer
 * Tiled

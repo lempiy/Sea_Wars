@@ -37,7 +37,7 @@
         "express": "^4.14.0",
         "express-jwt": "^5.1.0",
         "howler": "^2.0.2",
-        "mongojs": "^2.4.0",
+        "mongojs": "^3.1.0",
         "morgan": "^1.7.0",
         "pixi.js": "4.3.2",
         "redis": "^2.6.5",
